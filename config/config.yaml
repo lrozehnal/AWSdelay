@@ -1,0 +1,31 @@
+vpc:
+  client:
+    "cidr": "10.10.0.0/20"
+    "desc": "VPC for hosting client-side of testing - with internet access"
+    "name" : "client-side"
+    "region" : "ap-southeast-2"  
+  proxy-1:
+    "cidr": "10.21.0.0/20"
+    "desc": "VPC for hosting Endpoint service in ap-southeast-2"
+    "name" : "proxy-1"
+    "region" : "ap-southeast-2"  
+  proxy-2:
+    "cidr": "10.22.0.0/20"
+    "desc": "VPC for hosting Endpoint service in ap-southeast-2"
+    "name" : "proxy-2"
+    "region" : "ap-southeast-1"  
+  proxy-3:
+    "cidr": "10.23.0.0/20"
+    "desc": "VPC for hosting Endpoint service in us-west-1"
+    "name" : "proxy-3"
+    "region" : "us-west-1"  
+  proxy-4:
+    "cidr": "10.24.0.0/20"
+    "desc": "VPC for hosting Endpoint service in us-east-1"
+    "name" : "proxy-4"
+    "region" : "us-east-1"  
+  server:
+    "cidr": "10.30.0.0/24"
+    "desc": "VPC for hosting server-side of testing - with internet access"
+    "name" : "client-side"
+    "region" : "us-east-1"  
