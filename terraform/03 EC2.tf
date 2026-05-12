@@ -1,5 +1,5 @@
 ## there are going to be two ec2 instaces - one in 'client' VPC to test from and other in 'server' VPC to test against (this EC2 will be hiden behind those four endpoints in differenct regions)
-
+/**/
 resource "tls_private_key" "key" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -54,3 +54,4 @@ module "server-ec2" {
     aws = aws.us-east-1
   }
 }
+

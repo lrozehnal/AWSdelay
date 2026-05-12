@@ -75,7 +75,7 @@ data "aws_route53_zone" "main" {
 
 resource "aws_route53_record" "ec2" {
   zone_id = data.aws_route53_zone.main.zone_id
-  name    = "${var.name}.${var.domain}."
+  name    = "${var.name}.${var.domain}"
   type    = "A"
   ttl     = 300
   records = [aws_instance.ec2.public_ip]  

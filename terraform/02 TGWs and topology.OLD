@@ -95,7 +95,7 @@ resource "aws_ec2_transit_gateway_route_table" "us-east-1-TGW-RT" {
   provider           = aws.us-east-1
   transit_gateway_id = aws_ec2_transit_gateway.us-east-1-TGW.id
   tags = merge(local.tags, {
-    Name = "default route table for us-east-1 TGW"
+    Name = " route table for us-east-1 TGW"
   })
 }
 
@@ -103,7 +103,7 @@ resource "aws_ec2_transit_gateway_route_table" "us-west-1-TGW-RT" {
   provider           = aws.us-west-1
   transit_gateway_id = aws_ec2_transit_gateway.us-west-1-TGW.id
   tags = merge(local.tags, {
-    Name = "default route table for us-west-1 TGW"
+    Name = " route table for us-west-1 TGW"
   })
 }
 
@@ -111,7 +111,7 @@ resource "aws_ec2_transit_gateway_route_table" "ap-southeast-1-TGW-RT" {
   provider           = aws.ap-southeast-1
   transit_gateway_id = aws_ec2_transit_gateway.ap-southeast-1-TGW.id
   tags = merge(local.tags, {
-    Name = "default route table for ap-southeast-1 TGW"
+    Name = " route table for ap-southeast-1 TGW"
   })
 }
 
@@ -119,9 +119,11 @@ resource "aws_ec2_transit_gateway_route_table" "ap-southeast-2-TGW-RT" {
   provider           = aws.ap-southeast-2
   transit_gateway_id = aws_ec2_transit_gateway.ap-southeast-2-TGW.id
   tags = merge(local.tags, {
-    Name = "default route table for ap-southeast-2 TGW"
+    Name = " route table for ap-southeast-2 TGW"
   })
 }
+
+
 
 ## routing for TGW:
 
@@ -172,7 +174,8 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "us-east-1-vpc-server-attachme
   transit_gateway_id = aws_ec2_transit_gateway.us-east-1-TGW.id
   vpc_id             = module.aws_vpc_server.vpc_id
   subnet_ids         = module.aws_vpc_server.subnets_id
-  #transit_gateway_default_route_table_propagation =  false  # Manual control                                                                                                                                                                                                                                                
+  #transit_gateway_default_route_table_propagation =  false 
+  transit_gateway_default_route_table_association = false                                                                                                                                                                                                                                                 
   dns_support  = "enable" # Optional                                                                                                                                                                                                                                                     
   ipv6_support = "disable"
   tags = merge(local.tags, {
@@ -185,7 +188,8 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "us-east-1-vpc-proxy-4-attachm
   transit_gateway_id = aws_ec2_transit_gateway.us-east-1-TGW.id
   vpc_id             = module.aws_vpc_proxy-4.vpc_id
   subnet_ids         = module.aws_vpc_proxy-4.subnets_id
-  #transit_gateway_default_route_table_propagation =  false  # Manual control                                                                                                                                                                                                                                                
+  #transit_gateway_default_route_table_propagation =  false 
+  transit_gateway_default_route_table_association = false                                                                                                                                                                                                                                                 
   dns_support  = "enable" # Optional                                                                                                                                                                                                                                                     
   ipv6_support = "disable"
   tags = merge(local.tags, {
@@ -196,12 +200,13 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "us-east-1-vpc-proxy-4-attachm
 /**/
 
 
-resource "aws_ec2_transit_gateway_vpc_attachment" "us-east-1-vpc-proxy-3-attachment" {
+resource "aws_ec2_transit_gateway_vpc_attachment" "us-west-1-vpc-proxy-3-attachment" {
   provider           = aws.us-west-1
   transit_gateway_id = aws_ec2_transit_gateway.us-west-1-TGW.id
   vpc_id             = module.aws_vpc_proxy-3.vpc_id
   subnet_ids         = module.aws_vpc_proxy-3.subnets_id
-  #transit_gateway_default_route_table_propagation =  false  # Manual control                                                                                                                                                                                                                                                
+  #transit_gateway_default_route_table_propagation =  false 
+  transit_gateway_default_route_table_association = false                                                                                                                                                                                                                                                 
   dns_support  = "enable" # Optional                                                                                                                                                                                                                                                     
   ipv6_support = "disable"
   tags = merge(local.tags, {
@@ -210,12 +215,13 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "us-east-1-vpc-proxy-3-attachm
 }
 
 
-resource "aws_ec2_transit_gateway_vpc_attachment" "us-east-1-vpc-proxy-2-attachment" {
+resource "aws_ec2_transit_gateway_vpc_attachment" "ap-southeast-1-vpc-proxy-2-attachment" {
   provider           = aws.ap-southeast-1
   transit_gateway_id = aws_ec2_transit_gateway.ap-southeast-1-TGW.id
   vpc_id             = module.aws_vpc_proxy-2.vpc_id
   subnet_ids         = module.aws_vpc_proxy-2.subnets_id
-  #transit_gateway_default_route_table_propagation =  false  # Manual control                                                                                                                                                                                                                                                
+  #transit_gateway_default_route_table_propagation =  false 
+  transit_gateway_default_route_table_association = false                                                                                                                                                                                                                                                 
   dns_support  = "enable" # Optional                                                                                                                                                                                                                                                     
   ipv6_support = "disable"
   tags = merge(local.tags, {
@@ -224,18 +230,52 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "us-east-1-vpc-proxy-2-attachm
 }
 
 
-resource "aws_ec2_transit_gateway_vpc_attachment" "us-east-1-vpc-proxy-1-attachment" {
+resource "aws_ec2_transit_gateway_vpc_attachment" "ap-southeast-2-vpc-proxy-1-attachment" {
   provider           = aws.ap-southeast-2
   transit_gateway_id = aws_ec2_transit_gateway.ap-southeast-2-TGW.id
   vpc_id             = module.aws_vpc_proxy-1.vpc_id
   subnet_ids         = module.aws_vpc_proxy-1.subnets_id
-  #transit_gateway_default_route_table_propagation =  false  # Manual control                                                                                                                                                                                                                                                
+  #transit_gateway_default_route_table_propagation =  false 
+  transit_gateway_default_route_table_association = false                                                                                                                                                                                                                                                 
   dns_support  = "enable" # Optional                                                                                                                                                                                                                                                     
   ipv6_support = "disable"
   tags = merge(local.tags, {
     Name = "VPC attachment in ap-southeast-2 for proxy-1 VPC"
   })
 }
+
+## ASSOCIATIONS
+
+resource "aws_ec2_transit_gateway_route_table_association" "us-east-1-vpc-server-attachment-association" {
+  provider           = aws.us-east-1
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.us-east-1-vpc-server-attachment.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.us-east-1-TGW-RT.id
+}
+
+resource "aws_ec2_transit_gateway_route_table_association" "us-east-1-vpc-proxy-4-attachment-association" {
+  provider           = aws.us-east-1
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.us-east-1-vpc-proxy-4-attachment.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.us-east-1-TGW-RT.id
+}
+
+resource "aws_ec2_transit_gateway_route_table_association" "us-west-1-vpc-proxy-3-attachment-association" {
+  provider           = aws.us-west-1
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.us-west-1-vpc-proxy-3-attachment.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.us-west-1-TGW-RT.id
+}
+
+resource "aws_ec2_transit_gateway_route_table_association" "ap-southeast-1-vpc-proxy-2-attachment-association" {
+  provider           = aws.ap-southeast-1
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.ap-southeast-1-vpc-proxy-2-attachment.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.ap-southeast-1-TGW-RT.id
+}
+resource "aws_ec2_transit_gateway_route_table_association" "ap-southeast-2-vpc-proxy-1-attachment-association" {
+  provider           = aws.ap-southeast-2
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.ap-southeast-2-vpc-proxy-1-attachment.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.ap-southeast-2-TGW-RT.id
+}
+
+
 
 ## finally routes inside vpcs
 

@@ -88,6 +88,7 @@ name        = "${var.name}-${var.nlbregion}-NLB"
      protocol = var.protocol
      #port     = var.tg_port
      port     = "22"
+     #port     = "5201"
      healthy_threshold = 2
    }
    
@@ -112,6 +113,8 @@ resource "aws_lb_listener" "listener-tcp" {
    port             = var.tg_port
    availability_zone = "all"                                                                                                                         
  }                                                                                                                                                            
+
+
 
 resource "aws_vpc_endpoint_service" "endpointservice" {  
   provider         = aws.nlb

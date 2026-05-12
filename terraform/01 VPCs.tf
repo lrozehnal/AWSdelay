@@ -25,7 +25,7 @@ module "aws_vpc_server" {
     aws = aws.us-east-1
   }
   cidr             = local.aws_config_env.vpc.server.cidr
-  desc             = local.aws_config_env.vpc.client.desc
+  desc             = local.aws_config_env.vpc.server.desc
   tags             = local.tags
   name             = local.aws_config_env.vpc.server.name
   use_6_AZs        = true
