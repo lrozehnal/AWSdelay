@@ -127,7 +127,6 @@ resource "aws_vpc_endpoint_service" "endpointservice" {
   })
 }
 
-
  data "aws_route53_zone" "dnszone" {
    provider = aws.nlb
    name = var.domain

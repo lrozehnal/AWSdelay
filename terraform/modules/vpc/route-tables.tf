@@ -21,4 +21,4 @@ resource "aws_route" "default_route" {
   destination_cidr_block    = "0.0.0.0/0"
   transit_gateway_id = data.aws_ec2_transit_gateway.tgw.id
 }
-*/
+*/  

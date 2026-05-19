@@ -6,7 +6,8 @@ terraform {
     bucket = "ludek-terraform-states-buckets"
     key    = "AWSdelay/terraform.tfstate"
     region = "eu-west-1"
-    #    dynamodb_table = "use_lockfile"
+    use_lockfile   = true
+    encrypt = true
   }
 }
 
