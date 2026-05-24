@@ -36,104 +36,6 @@ resource "aws_ec2_transit_gateway" "ap-southeast-2-TGW" {
 }
 
 
-## LOOKUP THE DEFAULT ROUTE TABLES FOR THOSE TGWS - NO LONGER USED 
-
-/*
-data "aws_ec2_transit_gateway_route_tables" "us-east-1-TGW-default-route-table" {
-  provider        = aws.us-east-1
-  filter {
-    name   = "transit-gateway-id"
-    values = [aws_ec2_transit_gateway.us-east-1-TGW.id]
-  }
-}
-
-import {
-  provider        = aws.us-east-1
-  to       = aws_ec2_transit_gateway_route_table.us-east-1-TGW-default-route-table
-  id       = data.aws_ec2_transit_gateway_route_tables.us-east-1-TGW-default-route-table.ids[0]
-}
-
-resource "aws_ec2_transit_gateway_route_table" "us-east-1-TGW-default-route-table" {
-  transit_gateway_id = aws_ec2_transit_gateway.us-east-1-TGW.id
-  provider        = aws.us-east-1
-  tags = {
-    Name = "us-east-1 TGW default route table "
-  }
-}
-
-
-data "aws_ec2_transit_gateway_route_tables" "us-west-1-TGW-default-route-table" {
-  provider        = aws.us-west-1
-  filter {
-    name   = "transit-gateway-id"
-    values = [aws_ec2_transit_gateway.us-west-1-TGW.id]
-  }
-}
-
-import {
-  provider        = aws.us-west-1
-  to       = aws_ec2_transit_gateway_route_table.us-west-1-TGW-default-route-table
-  id       = data.aws_ec2_transit_gateway_route_tables.us-west-1-TGW-default-route-table.ids[0]
-}
-
-resource "aws_ec2_transit_gateway_route_table" "us-west-1-TGW-default-route-table" {
-  transit_gateway_id = aws_ec2_transit_gateway.us-west-1-TGW.id
-  provider        = aws.us-west-1
-  tags = {
-    Name = "us-west-1 TGW default route table "
-  }
-}
-
-data "aws_ec2_transit_gateway_route_tables" "ap-southeast-1-TGW-default-route-table" {
-  provider        = aws.ap-southeast-1
-  filter {
-    name   = "transit-gateway-id"
-    values = [aws_ec2_transit_gateway.ap-southeast-1-TGW.id]
-  }
-}
-
-import {
-  provider        = aws.ap-southeast-1
-  to       = aws_ec2_transit_gateway_route_table.ap-southeast-1-TGW-default-route-table
-  id       = data.aws_ec2_transit_gateway_route_tables.ap-southeast-1-TGW-default-route-table.ids[0]
-}
-
-resource "aws_ec2_transit_gateway_route_table" "ap-southeast-1-TGW-default-route-table" {
-  transit_gateway_id = aws_ec2_transit_gateway.ap-southeast-1-TGW.id
-  provider        = aws.ap-southeast-1
-  tags = {
-    Name = "ap-southeast-1 TGW default route table "
-  }
-}
-
-data "aws_ec2_transit_gateway_route_tables" "ap-southeast-2-TGW-default-route-table" {
-  provider        = aws.ap-southeast-2
-  filter {
-    name   = "transit-gateway-id"
-    values = [aws_ec2_transit_gateway.ap-southeast-2-TGW.id]
-  }
-}
-
-import {
-  provider        = aws.ap-southeast-2
-  to       = aws_ec2_transit_gateway_route_table.ap-southeast-2-TGW-default-route-table
-  id       = data.aws_ec2_transit_gateway_route_tables.ap-southeast-2-TGW-default-route-table.ids[0]
-}
-
-resource "aws_ec2_transit_gateway_route_table" "ap-southeast-2-TGW-default-route-table" {
-  transit_gateway_id = aws_ec2_transit_gateway.ap-southeast-2-TGW.id
-  provider        = aws.ap-southeast-2
-  tags = {
-    Name = "ap-southeast-2 TGW default route table "
-  }
-}
-
-*/
-
-##  END OF LOOKUP THE DEFAULT ROUTE TABLES FOR THOSE TGWS
-
-
-
 ## ATTACH 3 TGWs with us-east-1 to create demanded topoogy
 ## us-west-1 to us-east-1
 
@@ -196,7 +98,6 @@ resource "aws_ec2_transit_gateway_route" "us-east-1-TGW-routes-for-peering-with-
   provider                       = aws.us-east-1
   destination_cidr_block         = local.aws_config_env.vpc.proxy-3.cidr
   transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.us-west-1-to-us-east-1.id
-  #transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.us-east-1-TGW-default-route-table.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway.us-east-1-TGW.association_default_route_table_id
 }
 resource "aws_ec2_transit_gateway_route" "us-west-1-TGW-routes-for-peering-with-us-east-1" {
